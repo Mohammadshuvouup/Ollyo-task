@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(222, 235, 247);
+  font-family: sans-serif;
+}
+
+input[type=checkbox] {
+  width: 18px;
+  height: 18px;
+}
+
+.image-gallery {
+  border-radius: 10px;
+  max-width: 1000px;
+  margin: 50px auto;
+}
+.image-gallery__header {
+  background-color: rgb(240, 237, 237);
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+  border-bottom: 2px solid rgba(206, 206, 206, 0.692);
+}
+.image-gallery__header .select-file {
+  display: flex;
+  align-items: center;
+}
+.image-gallery__header .select-file label {
+  margin-left: 5px;
+}
+.image-gallery__header .delete-btn {
+  color: red;
+  cursor: pointer;
+}
+.image-gallery__body {
+  padding: 30px;
+  background-color: aliceblue;
+}
+.image-gallery__images {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-rows: auto;
+}
+@media (min-width: 768px) {
+  .image-gallery__images {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.image-gallery__images .image {
+  height: 150px;
+  border-radius: 10px;
+  border: 1px solid rgb(95, 95, 95);
+  position: relative;
+  cursor: pointer;
+}
+.image-gallery__images .image:hover .overlay,
+.image-gallery__images .image:hover input[type=checkbox] {
+  opacity: 1;
+}
+.image-gallery__images .image .overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.46);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.45s ease;
+}
+.image-gallery__images .image input[type=checkbox] {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+.image-gallery__images .image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+.image-gallery__images .image:first-child {
+  height: 250px;
+}
+@media (min-width: 768px) {
+  .image-gallery__images .image:first-child {
+    grid-row: span 2;
+    grid-column: span 2;
+    height: 100%;
+  }
+}
+.image-gallery__images .add-image {
+  height: 150px;
+  border: 4px dotted rgba(115, 115, 115, 0.961);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-direction: column;
+  cursor: pointer;
+}
+.image-gallery__images .add-image img {
+  width: 40px;
+}
+
+/*# sourceMappingURL=App.css.map */

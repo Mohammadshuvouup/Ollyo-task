@@ -1,0 +1,115 @@
+@import '../mixins/breakpoints.scss';
+
+.image-gallery{
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: 50px auto;
+
+    &__header{
+        background-color: rgb(240, 237, 237);
+        padding: 20px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top-right-radius: inherit;
+        border-top-left-radius: inherit;
+        border-bottom: 2px solid rgba(206, 206, 206, 0.692);
+
+        .select-file{
+            display: flex;
+            align-items: center;
+
+              label{
+                margin-left: 5px;
+            }
+        }
+
+        .delete-btn{
+            color: red;
+            cursor: pointer;
+        }
+    }
+
+    &__body{
+        padding: 30px;
+        background-color: aliceblue;
+    }
+
+    &__images{
+        display: grid;
+        grid-gap: 10px;
+        grid-template-rows: auto;
+
+        @include respond-to("tablet"){
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .image{
+            height: 150px;
+            border-radius: 10px;
+            border: 1px solid rgb(95, 95, 95);
+            position: relative;
+            cursor: pointer;
+
+            &:hover{
+                .overlay,
+                input[type=checkbox] {
+                    opacity: 1;
+                }
+            }
+
+            .overlay{
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.46);
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                border-radius: inherit;
+                cursor: pointer;
+                opacity: 0;
+                transition: all .45s ease;
+            }
+
+            input[type=checkbox] {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                opacity: 0;
+                transition: all .35s ease;
+            }
+
+            img{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                border-radius: inherit;
+            }
+
+            &:first-child{
+               height: 250px;
+                @include respond-to("tablet"){
+                    grid-row: span 2;
+                    grid-column: span 2;
+                    height: 100%;
+                }
+            }
+        }
+
+        .add-image{
+            height: 150px;
+            border: 4px dotted rgba(115, 115, 115, 0.961);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-direction: column;
+            cursor: pointer;
+
+            img{
+                width: 40px;
+            }
+        }
+    }
+}
