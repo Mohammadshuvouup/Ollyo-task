@@ -67,12 +67,13 @@ const ImageGallery = () => {
   },[]);
  
   const updateSelectedItem =(item) =>{
-    // setSelectedItem([...selectedItem , item]);
-    isDuplicate(item);
+    if(!isDuplicate(item)){
+        setSelectedItem([...selectedItem , item]);
+    }
   }
 
   const isDuplicate =(item)=>{
-    
+   return selectedItem.includes(item); 
   }
 
   return (
