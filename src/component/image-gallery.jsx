@@ -49,14 +49,14 @@ const ImageGallery = () => {
                 type="checkbox"
                 id="files"
                 name="files"
-                value="Bike"
+                value=""
                 checked
                 readOnly
               />
               <label htmlFor="files">
                 {selectedItem.length} 
-                {selectedItem.length == 1 ? 'File Selected' : ''}
-                {selectedItem.length > 1 ? 'Files Selected' : ''}
+                {selectedItem.length == 1 ? ' File Selected' : ''}
+                {selectedItem.length > 1 ? ' Files Selected' : ''}
               </label>
             </>
           )}
