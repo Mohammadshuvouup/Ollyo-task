@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import SortableList, { SortableItem } from 'react-easy-sort'
+import arrayMove from 'array-move'
 const ImageGallery = () => {
   const [images, setImages] = useState([]);
   const [selectedItem, setSelectedItem] = useState([]);
@@ -86,6 +88,13 @@ const ImageGallery = () => {
     setSelectedItem([]);
   };
 
+  const onSortEnd = (oldIndex, newIndex) => {
+    console.log("old", oldIndex)
+    console.log("new", newIndex)
+    setImages((array) => arrayMove(array, oldIndex, newIndex))
+  }
+
+
   return (
     <div className="image-gallery">
       <div className="image-gallery__header">
@@ -117,30 +126,37 @@ const ImageGallery = () => {
         )}
       </div>
       <div className="image-gallery__body">
-        <div className="image-gallery__images">
-          {images.map((item, key) => {
+        <SortableList onSortEnd={onSortEnd} 
+        className="image-gallery__images"  draggedItemClassName="dragged">
+          {images && images.length>0 && images.map((item, key) => {
             return (
-              <div className="image" key={key}>
-                <img src={item.image} alt={item.name} />
-                <label
-                  onClick={() => updateSelectedItem(item)}
-                  className="overlay"
-                  htmlFor={item.id}
-                />
-                <input
-                  type="checkbox"
-                  id={item.id}
-                  name={item.name}
-                  value={item.name}
-                />
-              </div>
+              
+              <SortableItem key={key}>
+                <div className="image">
+                  <img src={item.image} alt={item.name} />
+                  <label
+                    onClick={() => updateSelectedItem(item)}
+                    className="overlay"
+                    htmlFor={item.id}
+                    allowDrag={false}
+                  />
+                  <input
+                    type="checkbox"
+                    id={item.id}
+                    name={item.name}
+                    value={item.name}
+                    allowDrag={false}
+                  />
+                </div>
+              </SortableItem>
+         
             );
           })}
           <div className="add-image">
             <img src="/assets/images/add-image.png" alt="" />
             <span>Add image</span>
           </div>
-        </div>
+</SortableList>
       </div>
     </div>
   );

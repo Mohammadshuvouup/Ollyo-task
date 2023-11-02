@@ -50,6 +50,7 @@ p {
   display: grid;
   grid-gap: 10px;
   grid-template-rows: auto;
+  user-select: none;
 }
 @media (min-width: 768px) {
   .image-gallery__images {
@@ -62,6 +63,7 @@ p {
   border: 1px solid rgb(95, 95, 95);
   position: relative;
   cursor: pointer;
+  user-select: none;
 }
 .image-gallery__images .image:hover .overlay,
 .image-gallery__images .image:hover input[type=checkbox] {
@@ -118,6 +120,19 @@ p {
 }
 .image-gallery__images .add-image img {
   width: 40px;
+}
+
+.image.dragged {
+  width: 200px;
+  height: 200px;
+}
+.image.dragged img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.image.dragged input[type=checkbox] {
+  display: none;
 }
 
 /*# sourceMappingURL=App.css.map */

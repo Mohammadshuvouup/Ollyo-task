@@ -40,6 +40,7 @@
         display: grid;
         grid-gap: 10px;
         grid-template-rows: auto;
+        user-select: none;
 
         @include respond-to("tablet"){
             grid-template-columns: repeat(5, 1fr);
@@ -51,6 +52,8 @@
             border: 1px solid rgb(95, 95, 95);
             position: relative;
             cursor: pointer;
+            user-select: none;
+            // pointer-events: none;
 
             &:hover{
                 .overlay,
@@ -116,5 +119,19 @@
                 width: 40px;
             }
         }
+    }
+}
+
+.image.dragged{
+    width: 200px;
+    height : 200px;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    input[type=checkbox] {
+       display: none;
     }
 }
