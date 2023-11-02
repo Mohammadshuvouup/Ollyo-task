@@ -11,6 +11,10 @@ input[type=checkbox] {
   height: 18px;
 }
 
+p {
+  margin: 0;
+}
+
 .image-gallery {
   border-radius: 10px;
   max-width: 1000px;
@@ -29,6 +33,7 @@ input[type=checkbox] {
 .image-gallery__header .select-file {
   display: flex;
   align-items: center;
+  min-height: 24px;
 }
 .image-gallery__header .select-file label {
   margin-left: 5px;
