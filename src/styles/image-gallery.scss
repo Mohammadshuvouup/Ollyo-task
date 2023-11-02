@@ -38,7 +38,7 @@
 
     &__images{
         display: grid;
-        grid-gap: 10px;
+        grid-gap: 15px;
         grid-template-rows: auto;
         user-select: none;
 
@@ -47,9 +47,8 @@
         }
 
         .image{
-            height: 150px;
             border-radius: 10px;
-            border: 1px solid rgb(95, 95, 95);
+            border: 1px solid rgb(185, 185, 185);
             position: relative;
             cursor: pointer;
             user-select: none;
@@ -105,7 +104,6 @@
         }
 
         .add-image{
-            height: 150px;
             border: 4px dotted rgba(115, 115, 115, 0.961);
             border-radius: 10px;
             display: flex;
