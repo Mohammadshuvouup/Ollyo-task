@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SortableList, { SortableItem } from 'react-easy-sort'
-import arrayMove from 'array-move'
+import {arrayMoveImmutable} from 'array-move';
+
 const ImageGallery = () => {
   const [images, setImages] = useState([]);
   const [selectedItem, setSelectedItem] = useState([]);
@@ -86,14 +87,13 @@ const ImageGallery = () => {
     const newData = images.filter((value) => !selectedItem.includes(value));
     setImages(newData);
     setSelectedItem([]);
+    let checkboxes = document.querySelectorAll("input[type='checkbox']");
+    checkboxes.forEach(el => {el.checked = false})
   };
 
   const onSortEnd = (oldIndex, newIndex) => {
-    console.log("old", oldIndex)
-    console.log("new", newIndex)
-    setImages((array) => arrayMove(array, oldIndex, newIndex))
+    setImages((array) => arrayMoveImmutable(array, oldIndex, newIndex))
   }
-
 
   return (
     <div className="image-gallery">
@@ -126,11 +126,9 @@ const ImageGallery = () => {
         )}
       </div>
       <div className="image-gallery__body">
-        <SortableList onSortEnd={onSortEnd} 
-        className="image-gallery__images"  draggedItemClassName="dragged">
+        <SortableList onSortEnd={onSortEnd} className="image-gallery__images"  draggedItemClassName="dragged">
           {images && images.length>0 && images.map((item, key) => {
             return (
-              
               <SortableItem key={key}>
                 <div className="image">
                   <img src={item.image} alt={item.name} />
@@ -138,14 +136,12 @@ const ImageGallery = () => {
                     onClick={() => updateSelectedItem(item)}
                     className="overlay"
                     htmlFor={item.id}
-                    allowDrag={false}
                   />
                   <input
                     type="checkbox"
                     id={item.id}
                     name={item.name}
                     value={item.name}
-                    allowDrag={false}
                   />
                 </div>
               </SortableItem>
@@ -156,7 +152,7 @@ const ImageGallery = () => {
             <img src="/assets/images/add-image.png" alt="" />
             <span>Add image</span>
           </div>
-</SortableList>
+      </SortableList>
       </div>
     </div>
   );

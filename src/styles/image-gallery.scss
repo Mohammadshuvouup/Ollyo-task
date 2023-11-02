@@ -53,7 +53,6 @@
             position: relative;
             cursor: pointer;
             user-select: none;
-            // pointer-events: none;
 
             &:hover{
                 .overlay,
@@ -70,9 +69,10 @@
                 top: 0;
                 left: 0;
                 border-radius: inherit;
-                cursor: pointer;
+                cursor: grab;
                 opacity: 0;
                 transition: all .45s ease;
+                user-select: none;
             }
 
             input[type=checkbox] {
@@ -123,12 +123,10 @@
 }
 
 .image.dragged{
-    width: 200px;
-    height : 200px;
     img{
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+        width: 190px;
+        pointer-events: none;
+        user-select: none;
     }
 
     input[type=checkbox] {

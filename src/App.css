@@ -77,9 +77,10 @@ p {
   top: 0;
   left: 0;
   border-radius: inherit;
-  cursor: pointer;
+  cursor: grab;
   opacity: 0;
   transition: all 0.45s ease;
+  user-select: none;
 }
 .image-gallery__images .image input[type=checkbox] {
   position: absolute;
@@ -122,14 +123,10 @@ p {
   width: 40px;
 }
 
-.image.dragged {
-  width: 200px;
-  height: 200px;
-}
 .image.dragged img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 190px;
+  pointer-events: none;
+  user-select: none;
 }
 .image.dragged input[type=checkbox] {
   display: none;
