@@ -70,11 +70,21 @@ const ImageGallery = () => {
     if(!isDuplicate(item)){
         setSelectedItem([...selectedItem , item]);
     }
+    else{
+     const updated_array = selectedItem.filter((value)=>  value.id!==item.id );
+     setSelectedItem(updated_array);
+    }
   }
 
   const isDuplicate =(item)=>{
-   return selectedItem.includes(item); 
-  }
+   return selectedItem.includes(item);
+  };
+
+  const deleteItem =()=>{
+    const newData = images.filter((value) => !selectedItem.includes(value));
+          setImages(newData);
+          setSelectedItem([]);
+  };
 
   return (
     <div className="image-gallery">
@@ -83,7 +93,7 @@ const ImageGallery = () => {
              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
              <label htmlFor="vehicle1">{selectedItem.length} File Selected</label>
         </div>
-        <div className="delete-btn">Delete All</div>
+        <div  onClick={() =>deleteItem()} className="delete-btn">Delete All</div>
       </div>
       <div className="image-gallery__body">
         <div className="image-gallery__images">

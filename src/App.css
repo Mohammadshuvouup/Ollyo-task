@@ -81,6 +81,9 @@ input[type=checkbox] {
   opacity: 0;
   transition: all 0.35s ease;
 }
+.image-gallery__images .image input[type=checkbox]:checked {
+  opacity: 1;
+}
 .image-gallery__images .image img {
   object-fit: cover;
   width: 100%;
