@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import SortableList, { SortableItem } from 'react-easy-sort'
 import {arrayMoveImmutable} from 'array-move';
 import data from '../data/data.json';
 
 const ImageGallery = () => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([...data]);
   const [selectedItem, setSelectedItem] = useState([]);
 
-  useEffect(() => {
-    setImages(data);
-  }, []);
-
+  // update selected-item state
   const updateSelectedItem = (item) => {
     if (!isDuplicate(item)) {
       setSelectedItem([...selectedItem, item]);
@@ -22,10 +19,12 @@ const ImageGallery = () => {
     }
   };
 
+  // check if selected image is present in selected-item state
   const isDuplicate = (item) => {
     return selectedItem.includes(item);
   };
 
+  // delete items
   const deleteItem = () => {
     const newData = images.filter((value) => !selectedItem.includes(value));
     setImages(newData);
@@ -55,7 +54,9 @@ const ImageGallery = () => {
                 readOnly
               />
               <label htmlFor="files">
-                {selectedItem.length} File Selected
+                {selectedItem.length} 
+                {selectedItem.length == 1 ? 'File Selected' : ''}
+                {selectedItem.length > 1 ? 'Files Selected' : ''}
               </label>
             </>
           )}
@@ -64,7 +65,8 @@ const ImageGallery = () => {
           ""
         ) : (
           <div onClick={() => deleteItem()} className="delete-btn">
-            Delete All
+                {selectedItem.length == 1 ? 'Delete File' : ''}
+                {selectedItem.length > 1 ? 'Delete Files'  : ''}
           </div>
         )}
       </div>
